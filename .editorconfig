@@ -11,3 +11,12 @@ charset = utf-8
 [{*.go,go.mod,go.sum,*.md}]
 indent_style = tab
 indent_size = 4
+
+[{CMakeLists.txt,*.cmake.in,*.cmake}]
+indent_size = 4
+
+[*.py]
+indent_size = 4
+
+[{Dockerfile,*.dockerfile}]
+indent_size = 4
