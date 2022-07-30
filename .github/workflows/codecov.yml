@@ -1,0 +1,47 @@
+name: Codecov
+
+on: [push, pull_request]
+
+jobs:
+  codecov:
+    name: Codecov
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Generate
+        run: |
+          mkdir build
+          pushd build
+          cmake -DCMAKE_BUILD_TYPE=Release -DCODE_COVERAGE -G "Unix Makefiles" ..
+          popd
+        shell: bash
+
+      - name: Build
+        run: |
+          pushd build
+          cmake --build . --target colette
+          popd
+        shell: bash
+
+      - name: Test
+        run: |
+          pushd build
+          cmake --build . --target colette_test
+          popd
+        shell: bash
+
+      - name: Create Lcov Report
+        run: |
+          lcov --capture --directory build --output-file coverage.info
+          lcov --list coverage.info
+        shell: bash
+
+      - name: Upload Coverage Reports to Codecov
+        uses: codecov/codecov-action@v3
