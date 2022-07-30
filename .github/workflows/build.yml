@@ -23,17 +23,11 @@ jobs:
           popd
         shell: bash
 
-      - name: Build
-        run: |
-          pushd build
-          cmake --build . --target colette
-          popd
-        shell: bash
-
       - name: Test
         run: |
           pushd build
           cmake --build . --target colette_test
+          ./colette_test
           popd
         shell: bash
 

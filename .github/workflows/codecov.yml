@@ -19,14 +19,7 @@ jobs:
         run: |
           mkdir build
           pushd build
-          cmake -DCMAKE_BUILD_TYPE=Release -DCODE_COVERAGE -G "Unix Makefiles" ..
-          popd
-        shell: bash
-
-      - name: Build
-        run: |
-          pushd build
-          cmake --build . --target colette
+          cmake -DCMAKE_BUILD_TYPE=Release -DCODE_COVERAGE=true -G "Unix Makefiles" ..
           popd
         shell: bash
 
@@ -34,6 +27,7 @@ jobs:
         run: |
           pushd build
           cmake --build . --target colette_test
+          ./colette_test
           popd
         shell: bash
 
