@@ -25,7 +25,7 @@ func TestJoinRgb(t *testing.T) {
 }
 
 func TestSplitRgb(t *testing.T) {
-	var r, g, b rune
+	var r, g, b byte
 	SplitRgb(0xc8c8c8, &r, &g, &b)
 	assert.Equal(t, 200, r, "R")
 	assert.Equal(t, 200, g, "G")

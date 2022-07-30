@@ -6,15 +6,15 @@ import "C"
 
 import "unsafe"
 
-func RgbTo256(r rune, g rune, b rune) int {
+func RgbTo256(r byte, g byte, b byte) int {
 	return int(C.colette_rgbto256(C.uchar(r), C.uchar(g), C.uchar(b)))
 }
 
-func JoinRgb(r rune, g rune, b rune) int {
+func JoinRgb(r byte, g byte, b byte) int {
 	return int(C.colette_join_rgb(C.uchar(r), C.uchar(g), C.uchar(b)))
 }
 
-func SplitRgb(c int, r *rune, g *rune, b *rune) {
+func SplitRgb(c int, r *byte, g *byte, b *byte) {
 	C.colette_split_rgb(
 		C.int(c),
 		(*C.uchar)(unsafe.Pointer(r)),
