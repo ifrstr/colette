@@ -20,10 +20,10 @@ set(CMAKE_MESSAGE_LOG_LEVEL VERBOSE)
 # Library
 ############################################################
 
-add_library(colette SHARED)
+add_library(colette INTERFACE)
 
 target_include_directories(colette
-    PUBLIC
+    INTERFACE
         ${PROJECT_SOURCE_DIR}/include
 )
 
@@ -32,19 +32,19 @@ target_include_directories(colette
 ############################################################
 
 target_compile_definitions(colette
-    PUBLIC
+    INTERFACE
         UNICODE
         _UNICODE
 )
 
 if(MSVC)
     target_compile_options(colette
-        PUBLIC
+        INTERFACE
             /utf-8
     )
 else()
     target_compile_options(colette
-        PUBLIC
+        INTERFACE
             -fexec-charset=UTF-8
             -finput-charset=UTF-8
     )
