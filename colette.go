@@ -1,7 +1,6 @@
 package colette
 
 //#cgo CFLAGS: -I${SRCDIR}/include/colette
-//#cgo LDFLAGS: -L${SRCDIR}/include/colette
 //#include "colette.h"
 import "C"
 
