@@ -37,3 +37,11 @@ jobs:
           cmake --build . --target package
           popd
         shell: bash
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: colette-${{ github.sha }}
+          path: |
+            include/
+            build/*.deb
+            build/*.rpm
