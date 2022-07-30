@@ -73,7 +73,7 @@ add_test(NAME test_all COMMAND colette_test)
 
 option(CODE_COVERAGE "Enable coverage reporting" OFF)
 if(CODE_COVERAGE)
-    target_compile_options(coverage_config INTERFACE
+    target_compile_options(colette INTERFACE
         -O0        # no optimization
         -g         # generate debug info
         --coverage # sets all required flags
