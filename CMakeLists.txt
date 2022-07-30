@@ -68,6 +68,24 @@ target_link_libraries(colette_test
 add_test(NAME test_all COMMAND colette_test)
 
 ############################################################
+# Coverage
+############################################################
+
+option(CODE_COVERAGE "Enable coverage reporting" OFF)
+if(CODE_COVERAGE)
+    target_compile_options(coverage_config INTERFACE
+        -O0        # no optimization
+        -g         # generate debug info
+        --coverage # sets all required flags
+    )
+    if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.13)
+        target_link_options(colette INTERFACE --coverage)
+    else()
+        target_link_libraries(colette INTERFACE --coverage)
+    endif()
+endif(CODE_COVERAGE)
+
+############################################################
 # Install
 ############################################################
 
