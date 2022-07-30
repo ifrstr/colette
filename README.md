@@ -9,7 +9,17 @@ Convert between truecolor, xterm(1) 256 color and 16 color. Single-header librar
 
 ### Install
 
-Using `make install`:
+Using prebuilt packages:
+
+Download artifacts from [Releases](https://github.com/ifrstr/colette/releases), including:
+
+- The header source
+
+- Deb package
+
+- Rpm package
+
+Or using `make install`:
 
 ```sh
 mkdir build && cd build && cmake .. && make && make install
