@@ -20,6 +20,8 @@ set(CMAKE_MESSAGE_LOG_LEVEL VERBOSE)
 # Library
 ############################################################
 
+add_library(colette SHARED)
+
 target_include_directories(colette
     PUBLIC
         ${PROJECT_SOURCE_DIR}/include
