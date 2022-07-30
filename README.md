@@ -2,6 +2,7 @@
 
 [![Go Reference](https://pkg.go.dev/badge/gopkg.ilharper.com/x/colette.svg)](https://pkg.go.dev/gopkg.ilharper.com/x/colette)
 [![Go Report Card](https://goreportcard.com/badge/gopkg.ilharper.com/x/colette)](https://goreportcard.com/report/gopkg.ilharper.com/x/colette)
+[![codecov](https://codecov.io/gh/ifrstr/colette/branch/master/graph/badge.svg?token=I4FWALY4EV)](https://codecov.io/gh/ifrstr/colette)
 
 Convert between truecolor, xterm(1) 256 color and 16 color. Single-header library. Arranged from [tmux](https://github.com/tmux/tmux).
 
