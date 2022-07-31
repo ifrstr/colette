@@ -1,6 +1,8 @@
 // Convert between truecolor, xterm(1) 256 color and 16 color.
 // Single-header library.
-// Arranged from [tmux](https://github.com/tmux/tmux).
+// Arranged from [tmux].
+//
+// [tmux]: https://github.com/tmux/tmux
 package colette
 
 //#cgo CFLAGS: -I${SRCDIR}/include
