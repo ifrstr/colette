@@ -12,6 +12,7 @@ TEST(Colette, RgbTo256) {
   EXPECT_EQ(21, colette_rgbto256(0, 0, 255));      // Blue (21)
   EXPECT_EQ(251, colette_rgbto256(200, 200, 200)); // Grey (232 - 255)
   EXPECT_EQ(251, colette_rgbto256(201, 201, 201)); // Fuzzy match
+  EXPECT_EQ(188, colette_rgbto256(215, 215, 215)); // Exact match
 }
 
 TEST(Colette, JoinRgb) {

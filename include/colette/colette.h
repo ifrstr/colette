@@ -23,8 +23,7 @@ static int colette_color_to_6cube(int v) {
  */
 int colette_rgbto256(unsigned char r, unsigned char g, unsigned char b) {
   static const int q2c[6] = {0x00, 0x5f, 0x87, 0xaf, 0xd7, 0xff};
-  int qr, qg, qb, cr, cg, cb, d, idx;
-  int grey_avg, grey_idx, grey;
+  int qr, qg, qb, cr, cg, cb, idx, grey_avg, grey_idx, grey;
 
   /* Map RGB to 6x6x6 cube. */
   qr = colette_color_to_6cube(r);
@@ -36,7 +35,7 @@ int colette_rgbto256(unsigned char r, unsigned char g, unsigned char b) {
 
   /* If we have hit the color exactly, return early. */
   if (cr == r && cg == g && cb == b)
-    return ((16 + (36 * qr) + (6 * qg) + qb));
+    return 16 + 36 * qr + 6 * qg + qb;
 
   /* Work out the closest grey (average of RGB). */
   grey_avg = (r + g + b) / 3;
@@ -47,8 +46,8 @@ int colette_rgbto256(unsigned char r, unsigned char g, unsigned char b) {
   grey = 8 + (10 * grey_idx);
 
   /* Is grey or 6x6x6 color closest? */
-  d = colette_dist_sq(cr, cg, cb, r, g, b);
-  idx = colette_dist_sq(grey, grey, grey, r, g, b) < d
+  idx = colette_dist_sq(grey, grey, grey, r, g, b) <
+                colette_dist_sq(cr, cg, cb, r, g, b)
             ? 232 + grey_idx
             : 16 + 36 * qr + 6 * qg + qb;
   return idx;
@@ -56,7 +55,7 @@ int colette_rgbto256(unsigned char r, unsigned char g, unsigned char b) {
 
 /* Join RGB into a color. */
 int colette_join_rgb(unsigned char r, unsigned char g, unsigned char b) {
-  return (int)(r & 0xff) << 16 | (int)(g & 0xff) << 8 | (int)(b & 0xff);
+  return (int)r << 16 | (int)g << 8 | (int)b;
 }
 
 /* Split color into RGB. */
@@ -68,7 +67,7 @@ void colette_split_rgb(int c, unsigned char *r, unsigned char *g,
 }
 
 /* Convert 256 color to RGB color. */
-int colette_256torgb(int c) {
+int colette_256torgb(unsigned char c) {
   static const int table[256] = {
       0x000000, 0x800000, 0x008000, 0x808000,
       0x000080, 0x800080, 0x008080, 0xc0c0c0,
@@ -135,11 +134,11 @@ int colette_256torgb(int c) {
       0xa8a8a8, 0xb2b2b2, 0xbcbcbc, 0xc6c6c6,
       0xd0d0d0, 0xdadada, 0xe4e4e4, 0xeeeeee};
 
-  return table[c & 0xff];
+  return table[c];
 }
 
 /* Convert 256 color to 16 color. */
-int colette_256to16(int c) {
+int colette_256to16(unsigned char c) {
   static const char table[256] = {
        0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15,
        0,  4,  4,  4, 12, 12,  2,  6,  4,  4, 12, 12,  2,  2,  6,  4,
@@ -158,7 +157,7 @@ int colette_256to16(int c) {
        9, 13, 11, 11, 11, 11, 11, 15,  0,  0,  0,  0,  0,  0,  8,  8,
        8,  8,  8,  8,  7,  7,  7,  7,  7,  7, 15, 15, 15, 15, 15, 15};
 
-  return table[c & 0xff];
+  return table[c];
 }
 
 #endif /* _COLETTE_H_ */
