@@ -13,6 +13,7 @@ func TestRgbTo256(t *testing.T) {
 	assert.Equal(t, 21, RgbTo256(0, 0, 255), "Blue (21)")
 	assert.Equal(t, 251, RgbTo256(200, 200, 200), "Grey (232 - 255)")
 	assert.Equal(t, 251, RgbTo256(201, 201, 201), "Fuzzy match")
+	assert.Equal(t, 188, RgbTo256(215, 215, 215), "Exact match")
 }
 
 func TestJoinRgb(t *testing.T) {
@@ -25,8 +26,7 @@ func TestJoinRgb(t *testing.T) {
 }
 
 func TestSplitRgb(t *testing.T) {
-	var r, g, b byte
-	SplitRgb(0xc8c8c8, &r, &g, &b)
+	r, g, b := SplitRgb(0xc8c8c8)
 	assert.Equal(t, byte(200), r, "R")
 	assert.Equal(t, byte(200), g, "G")
 	assert.Equal(t, byte(200), b, "B")
@@ -38,9 +38,9 @@ func TestColor256ToRgb(t *testing.T) {
 }
 
 func TestColor256To16(t *testing.T) {
-	assert.Equal(t, 12, Color256To16(21), "Pure Blue")
-	assert.Equal(t, 1, Color256To16(52), "Deep Red")
-	assert.Equal(t, 9, Color256To16(196), "Pure Red")
-	assert.Equal(t, 7, Color256To16(244), "Normal Grey")
-	assert.Equal(t, 15, Color256To16(253), "Light Grey")
+	assert.Equal(t, byte(12), Color256To16(21), "Pure Blue")
+	assert.Equal(t, byte(1), Color256To16(52), "Deep Red")
+	assert.Equal(t, byte(9), Color256To16(196), "Pure Red")
+	assert.Equal(t, byte(7), Color256To16(244), "Normal Grey")
+	assert.Equal(t, byte(15), Color256To16(253), "Light Grey")
 }
