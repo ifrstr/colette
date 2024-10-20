@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.0)
 ############################################################
 
 project(colette
-    VERSION 0.1.0
+    VERSION 1.0.0
     DESCRIPTION "Convert between truecolor, xterm(1) 256 color and 16 color."
     HOMEPAGE_URL "https://gopkg.ilharper.com/x/colette"
     LANGUAGES C CXX
