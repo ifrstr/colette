@@ -1,0 +1,18 @@
+[package]
+name = "colette"
+version = "0.2.0"
+edition = "2021"
+description = "Convert between truecolor, xterm(1) 256 color and 16 color."
+license = "ISC"
+homepage = "https://github.com/ifrstr/colette"
+repository = "https://github.com/ifrstr/colette"
+readme = "README.md"
+include = [
+    "Cargo.toml",
+    "colette.rs",
+]
+
+[lib]
+path = "colette.rs"
+
+[dependencies]
